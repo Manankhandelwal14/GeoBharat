@@ -35,7 +35,7 @@ body{
 
 .nav-links ul{
     justify-content: end;
-    gap: 30px ;
+    gap: 30px;
 }
 
 .nav-links ul :hover{
