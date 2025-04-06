@@ -45,10 +45,19 @@ body{
 .nav-toggle{
     display: none;
 }
+.first-page{
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .partone{
     background:linear-gradient(rgba(12, 12, 12, 0.762),rgba(0, 0, 0, 0.805)) ,url(worldmap.png);
-    height: 700px;
-    background-size:contain;
+    /* height: 700px; */
+    background-size:cover;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 } 
 
 .partone h2{
@@ -163,10 +172,10 @@ ul{
 }
 
 .container{
-    width: 100%;
-    margin-inline: auto;
+    max-width: 100%;
+    margin-inline: 0 auto;
     padding-inline: var(--padding-inline-section);
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .flex{
@@ -199,7 +208,9 @@ ul{
 .services-section{
     padding: 120px var(--padding-inline-section) 80px;
     background-color:#6662d4;
-    height: 700px;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
     background-position: center;
 }
 
@@ -208,10 +219,11 @@ ul{
     background-color: white;
     color: black;
     padding: 40px;
-    width: 1300px; 
+    width: 90%; 
+    max-width: 1300px;
     border-radius: .7rem;
-    margin-left: 80px;
-    margin-right: 80px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 50px;
     margin-bottom: 50px;
 }
@@ -240,7 +252,9 @@ ul{
 
 .ss2{
     padding: 50px var(--padding-inline-section);
-    height: 700px;
+    width: 100%;
+    max-width: 100%;
+    margin-left: -150px;
 }
 
 .services-section2{
@@ -258,7 +272,8 @@ ul{
 }
 
 .ser-right {
-    margin-right: 500px;
+    margin-right: 0;
+    width: 40%;
     max-height: 1000px;
     padding: 30px;
     background-color: white; 
@@ -355,7 +370,7 @@ ul{
 
 .service-number{
     margin-top: 20px;
-    margin-left: -15px;
+    margin-left: 600px;
     width: 30px;
     height: 30px;
     background-color: rgb(237, 220, 237);
@@ -376,64 +391,69 @@ ul{
 
 .service3 h2{
     margin-top: -38px;
-    margin-left: -250px;
+    margin-left: 380px;
     font-size: 1.2em;
     white-space: nowrap;
     flex-direction: row;
 }
 
 .service3 p{
-    margin-left: -410px;
+    margin-left: 220px;
     white-space: nowrap;
 }
 
 .service31 h2{
     margin-top: -38px;
-    margin-left: 80px;
+    margin-left: 680px;
     font-size: 1.2em;
     white-space: nowrap;
 }
 
 .service31 p{
-    margin-left: 80px;
+    margin-left: 680px;
     white-space: nowrap;
 }
 
 .service32 h2{
     margin-top: -38px;
-    margin-left: -200px;
+    margin-left: 430px;
     font-size: 1.2em;
     white-space: nowrap;
 }
 
 .service32 p{
-    margin-left: -560px;
+    margin-left: 70px;
     white-space: nowrap;
 }
 
 .service33 h2{
     margin-top: -38px;
-    margin-left: 80px;
+    margin-left: 680px;
     font-size: 1.2em;
     white-space: nowrap;
 }
 
 .service33 p{
-    margin-left: 80px;
+    margin-left: 680px;
     white-space: nowrap;
 }
 
-.vertical-line {
-    margin-left: 700px;
+/* .vertical-line {
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 50px;
     margin-bottom: 50px;
-    /* margin-right: 800px; */
-    width: 1px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 80%;
     height: 300px;
     border-left: 1px solid black;
-}
+} */
 
 .updates-section{
+    width: 100%;
+    overflow-x: hidden;
     height: 550px;
     margin-top: 90px;
     margin-bottom: 90px;
@@ -535,11 +555,12 @@ ul{
     background-color: white;
     color: black;
     padding: 40px;
-    width: 1000px; 
+    width: 80%; 
+    max-width: 1000px;
     height: 300px;
     border-radius: .7rem;
-    margin-left: 230px;
-    margin-right: 80px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 30px;
     margin-bottom: 30px;
 }
@@ -560,4 +581,10 @@ ul{
     gap: 30px;
     flex-wrap: wrap;
     align-items: center;
+}
+
+html , body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
