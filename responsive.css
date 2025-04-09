@@ -103,6 +103,7 @@
     }
 
     .ser-right{
+        white-space: wrap;
         height: 300px;
         margin-left: 300px;
     }
@@ -212,6 +213,86 @@
     }
 }
 
+
+@media screen and (max-width: 440px) {
+    .geo h2{
+        margin-left:16px;
+        font-size:1rem;
+    }
+
+    .geo p{
+        margin-left:15px;
+        font-size:0.7rem;
+    }
+
+    .search-input input::placeholder{
+        white-space: wrap;
+        font-size:0.9rem;
+    }
+    .search-input input{
+        /* padding-top: 5px; */
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 320px;
+        margin-left:-130px;
+    }
+
+    .services-section{
+        height:800px;
+    }
+    
+    .serviceshead h1{
+        font-size:1.4rem;
+    }
+
+    .services h3{
+        font-size:0.5rem;
+    }
+
+    .services p{
+        font-size:0.6rem;
+    }
+
+    .ser-right{
+        width:300px;
+        height:350px;
+    }
+
+    .taskitem p{
+        font-size:0.5rem;
+    }
+
+    .services-section3 h1{
+        margin-left:25px;
+        font-size:0.8rem;
+        white-space:wrap
+    }
+
+    .service-number{
+        margin-left:0.5px;
+    }
+    .service3 h2, .service31 h2, .service32 h2, .service33 h2 {
+        font-size: 0.8rem;
+        margin-left: 40px;
+    }
+
+    .service3 p, .service31 p, .service32 p, .service33 p {
+        font-size: 0.6rem;
+        margin-left: 40px;
+        white-space: wrap;
+    }
+
+    .updates-sectionleft img{
+        margin-top:15px;
+        margin-left:20px;
+    }
+
+    .aboutus h1{
+        font-size:1.2rem;
+    }
+}
+
 @media screen and (max-width: 380px) {
     :root {
         --padding-inline-section: 10px;
@@ -240,9 +321,8 @@
 
     .search-input input {
         margin-top: 20px;
-        margin-left: -150px;
-        width: 90%;
-        max-width: 300px;
+        width: 95%;
+        max-width: 280px;
     }
 
     .con3{
@@ -250,7 +330,7 @@
         margin-bottom: 40px;
     }
     input::placeholder {
-        font-size: 0.8rem;
+        font-size: 0.5rem;
     }
 
     .serviceshead h1 {
@@ -266,14 +346,9 @@
         font-size: 0.7rem;
     }
 
-    .item, .item2 {
-        margin: 5px auto;
-        width: 90%;
-        max-width: 200px;
-    }
 
     .ser-left img{
-        margin-left: 200px;
+        margin-left: 250px;
     }
 
     .ser-right {
@@ -290,6 +365,7 @@
     }
 
     .service-number{
+        margin-top: 30px;
         margin-left: 0.5px;
     }
 
@@ -326,6 +402,7 @@
 @media screen and (max-width: 350px) {
 
     .geo input{
+        width: 230px;
         margin-top: -50px;
     }
 

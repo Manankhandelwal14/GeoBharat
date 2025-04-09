@@ -131,8 +131,9 @@ h5{
     margin: 100px;
     flex: 1;
     background:plum;
-    padding: 25px;
-    max-width: 350px;
+    padding: 15px;
+    height: 120px;
+    width: 350px;
     justify-content: space-between;
     border-radius: 1rem;
 }
@@ -290,7 +291,6 @@ ul{
 .taskitem{
     gap: 15px;
     display: flex;
-    /* flex-wrap: wrap; */
     text-align: start;
 }
 
@@ -315,7 +315,7 @@ ul{
     /* flex-direction: column; */
 }
 
-.item h2{
+.item h4{
     margin: 0;
     font-size: 15px;
     color: black;
@@ -326,7 +326,7 @@ ul{
     transition: 0.5s ease-out;
 }
 
-.item2 h2{
+.item2 h4{
     margin: 0;
     font-size: 15px;
     color: black;
@@ -340,7 +340,7 @@ ul{
 
 .item p{
     margin: 0;
-    font-size: 0.9em;
+    font-size: 0.7em;
     color: black;
 }
 
@@ -472,7 +472,7 @@ ul{
 
 .updates-sectionleft img:hover{
     transform: scale(1.05);
-    transition: 0.7s ease-out;
+    transition: 1.5s ease-out;
     opacity: 1;
 }
 
