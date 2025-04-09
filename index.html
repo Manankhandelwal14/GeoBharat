@@ -29,6 +29,7 @@
         </div>
     </nav>
 
+    
     <div class="first-page flex">
         <div id="Home" class="partone">
             <div class="container flex geo">
@@ -38,10 +39,19 @@
                     <p style="color: white;">Connecting you to essential local information with ease</p> <br> <br>
                     <div class="search-input">
                         <input type="text" id="pincode" name="pincode" placeholder="Enter Your Pincode for Hyperlocal Information">
+                        <div class="search-icons">
+                            <button class="geo-button" id="get-location" type="button" title="Use my current location">
+                                <i class="fas fa-location-dot"></i>
+                                <i id="location-loading" class="fas fa-spinner"></i>
+                            </button>
+                            <span class="search-icon" title="Search">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
                     </div>
                     <div id="output"></div>
                 </header>
-            </div>
+            </div>    
             
             <div class="container3">
                 <div class="con3 flex">
@@ -87,38 +97,6 @@
     </div>
 
     <hr>
-
-    <!-- <div class="ss2">
-        <div class="flex services-section2">
-            <div class="ser-left">
-                <img src="office.png" alt="office image">
-            </div>
-            <div class="ser-right">
-                <h1>Emergency Contacts: Police,Fire,and Hospitals</h1>
-                <div class="taskitem">
-                    <button class="item hover-links">
-                        <a href="#">
-                        <h2>Police</h2>
-                        <p>Quick access to local police emergency numbers</p>
-                        </a>
-                    </button>
-                    <button class="item hover-links">
-                        <a href="#">
-                        <h2>Fire</h2>
-                        <p>Contact the fire department for immediate assistance</p>
-                        </a>
-                    </button>
-                </div>    
-                    <button class="item2 hover-links">
-                        <a href="#">
-                        <h2>Woman helpline</h2>
-                        <p>Call for immediate support and assistance because safety matters.</p>
-                        </a>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <div class="ss2">
         <div class="flex services-section2">
@@ -200,6 +178,9 @@
                 <div class="number3">3</div>
                 <h3>Important Announcements</h3>
                 <p>Never miss important civic announcements</p>
+            </div>
+            <div>
+                <h2>Coming Soon......</h2>
             </div>
         </div>
     </div>

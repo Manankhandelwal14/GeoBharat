@@ -1,4 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:ital@0;1&display=swap');
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 0; 
+}
+
+section, [id] {
+    scroll-margin-top: 0;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -14,6 +23,7 @@
 }
 
 body{
+    padding-top: 120px;
     font-family: 'Poppins',sans-serif;
     color: var(--primary-text-color);
 }
@@ -28,6 +38,22 @@ body{
 .company-logo img{
     width: 100px;
 }
+
+nav {
+    position: fixed; /* Change from sticky to fixed */
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    z-index: 1000; /* Higher z-index to ensure it stays on top */
+    transition: all 0.3s ease; /* Smooth transition for any changes */
+}
+
+/* section {
+    scroll-margin-top: 80px; 
+} */
 
 .nav-links{
     flex-basis: 730px;
@@ -76,21 +102,58 @@ body{
     margin-left: 250px;
 }
 
-
-.search-input input{
-    text-align: center;
-    height: 4vmax;
-    padding: 0px;
-    width: 900px;
-    border-radius: .5rem;
-    border: none;
-    outline: none;
+.search-input {
+    width: 600px;
+    margin-left: 400px;
 }
 
-input::placeholder {
-    color: black;
-    font-weight: bold;
-    font-size: 30px;
+.search-input input {
+    width: 100%;
+    padding: 12px 50px 12px 20px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.search-input input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.search-icons {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.geo-button, .search-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+    font-size: 18px;
+}
+
+.geo-button:hover, .search-icon:hover {
+    color: #3498db;
+}
+
+#location-loading {
+    display: none;
+    color: #3498db;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 h1{
@@ -131,13 +194,16 @@ h5{
     margin: 100px;
     flex: 1;
     background:plum;
-    padding: 15px;
-    height: 120px;
-    width: 350px;
+    padding: 25px;
+    max-width: 350px;
     justify-content: space-between;
     border-radius: 1rem;
 }
 
+.innercon32 p{
+    font-size: 0.9rem;
+
+}
 .innercon32:hover{
     background: lightpink;
     transition: 0.2s ease-out;
@@ -268,8 +334,9 @@ ul{
 }
 
 .ser-left img{
+    margin-left: -70px;
     height: 500px;
-    width: 1200px;
+    width: 1000px;
 }
 
 .ser-right {
@@ -477,7 +544,7 @@ ul{
 }
 
 .updates-sectionright {
-    margin-top: -100px;
+    margin-top: -40px;
     margin-left: 80px;
 }
 

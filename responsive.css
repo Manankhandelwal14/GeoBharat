@@ -49,6 +49,9 @@
         justify-content: center;
     }
     
+    .search-icons{
+        margin-right: 90px;
+    }
     .search-input input {
         text-align: center;
         height: 5vmax;
@@ -227,7 +230,7 @@
 
     .search-input input::placeholder{
         white-space: wrap;
-        font-size:0.9rem;
+        font-size:0.6rem;
     }
     .search-input input{
         /* padding-top: 5px; */
@@ -236,6 +239,9 @@
         height: 50px;
         width: 320px;
         margin-left:-130px;
+    }
+    .search-icons{
+        margin-right: 70px;
     }
 
     .services-section{
@@ -329,10 +335,14 @@
         margin-top: -100px;
         margin-bottom: 40px;
     }
-    input::placeholder {
+    .search-input input::placeholder {
         font-size: 0.5rem;
     }
 
+    .search-icons{
+        margin-top: 12px;
+        margin-right: 80px;
+    }
     .serviceshead h1 {
         font-size: 1.2rem;
         white-space: normal;
