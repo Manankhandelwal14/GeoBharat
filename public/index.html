@@ -201,7 +201,16 @@
             <a class="hover-links" href="#"><i class="fa-brands fa-twitter"></i></a>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js"></script>  
+    <script>
+        fetch('/api/data')
+          .then(res => res.json())
+          .then(data => {
+            console.log('MongoDB Data:', data);
+            // You can now use this data to populate your HTML
+          })
+          .catch(err => console.error('Error fetching data:', err));
+      </script>
     <script src="https://kit.fontawesome.com/f3140b6c91.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,0 +1,111 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    color: #183b56;
+}
+
+.result-box {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.result-box h2 {
+    text-align: center;
+    color: #2294ed;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    font-weight: bold;
+}
+
+.area-details h3 {
+    color: #1d69a3;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.section {
+    margin-bottom: 25px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.section h4 {
+    color: #2294ed;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.subsection {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.subsection h5 {
+    color: #577592;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.subsection p {
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+.list-item {
+    padding: 8px 0;
+}
+
+.item-separator {
+    border: 0;
+    border-top: 1px dashed #e0e0e0;
+    margin: 10px 0;
+}
+
+button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+    background-color: #2294ed;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1d69a3;
+}
+
+@media (max-width: 768px) {
+    .result-box {
+        padding: 15px;
+    }
+    
+    .section {
+        padding: 10px;
+    }
+}

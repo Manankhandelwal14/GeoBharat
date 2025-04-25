@@ -1,0 +1,32 @@
+{
+    "name": "geo-bharat",
+    "version": "1.0.0",
+    "description": "A hyperlocal information hub for citizens of India",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js",
+        "seed": "node seeder.js"
+    },
+    "keywords": [
+        "india",
+        "local",
+        "information",
+        "pincode",
+        "services"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^2.2.0",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.21.2",
+        "mongodb": "^6.16.0",
+        "mongoose": "^6.13.8"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.22",
+        "semver": "^7.7.1"
+    }
+}

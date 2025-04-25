@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Information - Geo Bharat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+</head>
+<body>
+    <nav>
+        <div class="container main-nav flex">
+            <a href="/" class="company-logo">
+                <img src="logowithsidename.png" alt="Geo Bharat">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container result-container">
+        <h1>Area Information</h1>
+        <div id="output">Loading...</div>
+        <button class="back-button" onclick="goBack()">🔙 Back to Home</button>
+    </div>
+
+    <div class="subfooter">
+        <div class="container flex subfooter-container">
+            <a class="hover-links" href="#">Privacy policy</a>
+            <a class="hover-links" href="#">Terms & Condition</a>
+            <a class="hover-links" href="#">Security Information</a>
+            <a class="hover-links" href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a class="hover-links" href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const output = document.getElementById('output');
+            const params = new URLSearchParams(window.location.search);
+            const pincode = params.get('pincode');
+        
+            if (!pincode) {
+                output.innerHTML = '<p style="color:red;">No pincode specified.</p>';
+                return;
+            }
+        
+            try {
+                const response = await fetch(`/api/area/${pincode}`);
+if (!response.ok) throw new Error('Area not found');
+
+const responseData = await response.json();
+const areaData = responseData.data;
+
+output.innerHTML = `
+    <h2>${areaData.name} (${areaData.pincode})</h2>
+    <section>
+        <h3>MLA</h3>
+        <p><strong>Name:</strong> ${areaData.mla?.name || 'N/A'}</p>
+        <p><strong>Party:</strong> ${areaData.mla?.party || 'N/A'}</p>
+        <p><strong>Phone:</strong> ${areaData.mla?.phone || 'N/A'}</p>
+        <p><strong>Office:</strong> ${areaData.mla?.office || 'N/A'}</p>
+    </section>
+    <section>
+    <h3>MP</h3>
+    <p><strong>Name:</strong> ${data.mp?.name || 'N/A'}</p>
+    <p><strong>Phone:</strong> ${data.mp?.phone || 'N/A'}</p>
+    <p><strong>Office:</strong> ${data.mp?.office || 'N/A'}</p>
+    </section>
+    <section>
+    <h3>Utilities</h3>
+    <p><strong>Electricity:</strong> ${data.utilities?.electricity?.name || 'N/A'} - ${data.utilities?.electricity?.helpline || 'N/A'}</p>
+    <p><strong>Water:</strong> ${data.utilities?.water?.name || 'N/A'} - ${data.utilities?.water?.helpline || 'N/A'}</p>
+    </section>
+    <section>
+    <h3>Emergency</h3>
+    <p><strong>Hospital:</strong> ${data.emergency?.hospitals?.[0]?.name || 'N/A'}</p>
+    <p><strong>Police:</strong> ${data.emergency?.police?.phone || 'N/A'}</p>
+    </section>
+    `;
+} catch (err) {
+    output.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
+}
+});
+function goBack() {
+    window.location.href = '/';
+}
+</script>        
+<script src="https://kit.fontawesome.com/f3140b6c91.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+</html>
