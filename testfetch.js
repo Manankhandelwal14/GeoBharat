@@ -1,6 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const Area = require('./models/Area');
+const Area = require('./models/area.js');
 
 (async () => {
   try {

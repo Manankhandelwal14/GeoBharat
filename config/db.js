@@ -1,3 +1,4 @@
+//db.js file
 const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', true);
@@ -8,7 +9,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       ssl: true,
-      tlsAllowInvalidCertificates: true, // only this if you MUST ignore cert issues
+      // Remove tlsAllowInvalidCertificates option
     });
 
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
@@ -19,5 +20,3 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
-
-

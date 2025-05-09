@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geo Bharat</title>
+    <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="responsive.css">
 </head>
 <body>
 
     <nav>
         <div class="container main-nav flex">
             <a href="#" class="company-logo">
-                <img src="logowithsidename.png" alt="My image">
+                <img src="logowithsidename.png" alt="Geo Bharat Logo">
             </a>
             <div class="nav-links" id="nav-links">
                 <ul class="flex">
@@ -78,17 +78,17 @@
             <h1>Quick Access: Essential Services in Your Area </h1>
             <div class="servicesarea flex">
                 <div class="services">
-                    <img src="hospital.png" alt="Services">
+                    <img src="hospital.png" alt="Hospital Services">
                     <h3>Government & Administration</h3>
                     <p>Find nearby medical facilities and emergency contacts.</p>
                 </div>
                 <div class="services">
                     <img src="civic.png" alt="Civic services">
                     <h3>Civic Services</h3>
-                    <p>Access local profile station information and contact numbers.</p>
+                    <p>Access local police station information and contact numbers.</p>
                 </div>
                 <div class="services">
-                    <img src="windmill.png" alt="Other services">
+                    <img src="windmill.png" alt="Utility services">
                     <h3>Others</h3>
                     <p>Get details for electricity and water board services.</p>
                 </div>
@@ -123,44 +123,45 @@
         </div>
     </div>
     <hr>
+    
+<!-- Updated service-section3 in index.html -->
+<div class="container services-section3">   
+    <h1>Utility Services: Electricity and Water Board Details</h1>
+        <div class="service-undersection3">
+            <div class="service3">
+                <button class="service-number hover-links utility-button" data-service="electricity"><a href="#">1</a></button>
+                <div class="service-details">
+                    <h2>Electricity Board</h2>
+                    <p>Contact information and service details.</p>
+                </div>
+            </div>
+            <div class="service31">
+                <button class="service-number hover-links utility-button" data-service="water"><a href="#">2</a></button>
+                <div class="service-details">
+                    <h2>Water Supply</h2>
+                    <p>Access details about water supply schedules and contacts.</p>
+                </div>
+            </div>
+            <div class="service32">
+                <button class="service-number hover-links utility-button" data-service="gas"><a href="#">3</a></button>
+                <div class="service-details">
+                    <h2>Gas Supply</h2>
+                    <p>Information about gas suppliers and emergency contacts.</p>
+                </div>
+            </div>
+            <div class="service33">
+                <button class="service-number hover-links utility-button" data-service="waste"><a href="#">4</a></button>
+                <div class="service-details">
+                    <h2>Waste Management</h2>
+                    <p>Find details about waste collection and disposal services.</p>
+                </div>
+            </div>
+        </div> 
+</div>
 
-    <div class="container services-section3">
-        <h1>Utility Services:Electricity and Water Board Details</h1>
-            <div class="service-undersection3">
-                <div class="service3">
-                    <button class="service-number hover-links"><a href="#">1</a></button>
-                    <div class="service-details">
-                        <h2>Electricity Board</h2>
-                        <p>Contact information and service details.</p>
-                    </div>
-                </div>
-                <div class="service31">
-                    <button class="service-number hover-links"><a href="#">2</a></button>
-                    <div class="service-details">
-                        <h2>Water Supply</h2>
-                        <p>Access details about water supply schedules and contacts.</p>
-                    </div>
-                </div>
-                <div class="service32">
-                    <button class="service-number hover-links"><a href="#">3</a></button>
-                    <div class="service-details">
-                        <h2>Gas Supply</h2>
-                        <p>Access details about water supply schedules and contacts.</p>
-                    </div>
-                </div>
-                <div class="service33">
-                    <button class="service-number hover-links"><a href="#">4</a></button>
-                    <div class="service-details">
-                        <h2>Waste Management</h2>
-                        <p>Access details about water supply schedules and contacts.</p>
-                    </div>
-                </div>
-            </div> 
-    </div>
-
-    <div id="Updates" class="conatainer updates-section flex">
+    <div id="Updates" class="container updates-section flex">
         <div class="updates-sectionleft">
-            <img class="hover-links" src="WhatsApp Image 2025-03-12 at 15.32.28.jpeg" alt="">
+            <img class="hover-links" src="WhatsApp Image 2025-03-12 at 15.32.28.jpeg" alt="News image">
         </div>
         <div class="updates-sectionright">
             <h1>Latest Local News and Updates - </h1>
@@ -188,7 +189,7 @@
     <div id="About" class="container about-section flex">
         <div class="aboutus">
             <h1>About Geo Bharat: Connecting You to Your Community</h1>
-            <p>Geo Bharat aims to bridge the information gap, empowering citizens with easy access to essential local details. We strive to connect you to your community,making civic engagement simple and seamless. Our mission is to build a more informed and connected Bharat,one pincode at a time.</p>
+            <p>Geo Bharat aims to bridge the information gap, empowering citizens with easy access to essential local details. We strive to connect you to your community, making civic engagement simple and seamless. Our mission is to build a more informed and connected Bharat, one pincode at a time.</p>
         </div>
     </div>
 
@@ -201,17 +202,8 @@
             <a class="hover-links" href="#"><i class="fa-brands fa-twitter"></i></a>
         </div>
     </div>
-    <script src="script.js"></script>  
-    <script>
-        fetch('/api/data')
-          .then(res => res.json())
-          .then(data => {
-            console.log('MongoDB Data:', data);
-            // You can now use this data to populate your HTML
-          })
-          .catch(err => console.error('Error fetching data:', err));
-      </script>
+    
     <script src="https://kit.fontawesome.com/f3140b6c91.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>  
 </body>
 </html>
-

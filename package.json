@@ -28,5 +28,13 @@
     "devDependencies": {
         "nodemon": "^2.0.22",
         "semver": "^7.7.1"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Manankhandelwal14/GeoBharat.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Manankhandelwal14/GeoBharat/issues"
+    },
+    "homepage": "https://github.com/Manankhandelwal14/GeoBharat#readme"
 }

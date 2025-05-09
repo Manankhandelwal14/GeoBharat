@@ -1,9 +1,35 @@
-// File: models/area.js
+// area.js 
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const areaSchema = new mongoose.Schema({
-  pincode: { type: String, required: true, unique: true },
+const EducationItemSchema = new Schema({
   name: String,
+  type: String,
+  address: String,
+  phone: String,
+  details: String
+});
+
+const AreaSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  pincode: {
+    type: String,
+    required: true,
+    trim: true,
+    index: true // Add index for faster queries
+  },
+  district: {
+    type: String,
+    trim: true
+  },
+  state: {
+    type: String,
+    trim: true
+  },
   mla: {
     name: String,
     party: String,
@@ -12,6 +38,7 @@ const areaSchema = new mongoose.Schema({
   },
   mp: {
     name: String,
+    party: String, // Added party field for consistency with MLA
     phone: String,
     office: String
   },
@@ -49,9 +76,7 @@ const areaSchema = new mongoose.Schema({
     }],
     metro: [{
       name: String,
-      contact: String,
-      address: String,
-      services: String
+      contact: String
     }],
     railway: [{
       name: String,
@@ -64,7 +89,8 @@ const areaSchema = new mongoose.Schema({
     hospitals: [{
       name: String,
       address: String,
-      phone: String
+      phone: String,
+      emergency: String // Added emergency contact
     }],
     fireStations: [{
       name: String,
@@ -77,13 +103,7 @@ const areaSchema = new mongoose.Schema({
       emergency: String
     }
   },
-  education: [{
-    name: String,
-    type: String,
-    address: String,
-    phone: String,
-    details: String
-  }],
+  education: [EducationItemSchema],
   publicFacilities: {
     libraries: [{
       name: String,
@@ -102,7 +122,18 @@ const areaSchema = new mongoose.Schema({
       address: String,
       phone: String
     }
+  },
+  coordinates: {
+    latitude: Number,
+    longitude: Number
   }
+}, {
+  timestamps: true // Adds createdAt and updatedAt fields
 });
 
-module.exports = mongoose.model('Area', areaSchema);
+// Add a compound index for faster searches
+AreaSchema.index({ name: 1, pincode: 1 });
+
+mongoose.set('strictQuery', true);
+
+module.exports = mongoose.model('Area', AreaSchema);

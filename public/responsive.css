@@ -443,3 +443,31 @@
         font-size: 0.5rem;
     }
 }
+
+@media screen and (max-width: 767px) {
+    .main-nav {
+        overflow: initial;
+    }
+    
+    .nav-toggle {
+        display: block;
+        margin-right: 20px;
+    }
+    
+    .main-nav .flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .nav-links {
+        position: absolute;
+        background-color: white;
+        width: 100%;
+        top: 100%;
+        left: 0;
+        padding: 10px;
+        display: none;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+    }
+}

@@ -505,19 +505,6 @@ ul{
     white-space: nowrap;
 }
 
-/* .vertical-line {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 80%;
-    height: 300px;
-    border-left: 1px solid black;
-} */
-
 .updates-section{
     width: 100%;
     overflow-x: hidden;
@@ -650,8 +637,13 @@ ul{
     align-items: center;
 }
 
+.subfooter-container a:hover{
+    transform: translateX(-5px);
+}
+
 html , body {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
 }
+

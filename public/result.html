@@ -1,26 +1,46 @@
+<!-- result.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area Information - Geo Bharat</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="style2.css">
     <link rel="icon" href="logo.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/f3140b6c91.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body data-pincode="">
+
     <nav>
         <div class="container main-nav flex">
-            <a href="/" class="company-logo">
-                <img src="logowithsidename.png" alt="Geo Bharat">
+            <a href="index.html" class="company-logo">
+                <img src="logowithsidename.png" alt="Geo Bharat Logo">
             </a>
         </div>
     </nav>
 
-    <div class="container result-container">
-        <h1>Area Information</h1>
-        <div id="output">Loading...</div>
-        <button class="back-button" onclick="goBack()">🔙 Back to Home</button>
+    <div class="container">
+        <h1 class="area-title">Area Information</h1>      
+        <div id="area-info-container">
+            <div id="loading" class="loading-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <p>Loading area information...</p>
+            </div>
+            <div id="error-message" style="display:none; color:red; padding:20px;"></div>
+            <div id="area-details" style="display:none;">
+                <!-- Area details will be populated here -->
+            </div>
+        </div>
+        
+        <div class="back-link">
+            <a href="index.html" class="hover-links">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>              
+        </div>
     </div>
 
     <div class="subfooter">
@@ -32,59 +52,11 @@
             <a class="hover-links" href="#"><i class="fa-brands fa-twitter"></i></a>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const output = document.getElementById('output');
-            const params = new URLSearchParams(window.location.search);
-            const pincode = params.get('pincode');
-        
-            if (!pincode) {
-                output.innerHTML = '<p style="color:red;">No pincode specified.</p>';
-                return;
-            }
-        
-            try {
-                const response = await fetch(`/api/area/${pincode}`);
-if (!response.ok) throw new Error('Area not found');
 
-const responseData = await response.json();
-const areaData = responseData.data;
-
-output.innerHTML = `
-    <h2>${areaData.name} (${areaData.pincode})</h2>
-    <section>
-        <h3>MLA</h3>
-        <p><strong>Name:</strong> ${areaData.mla?.name || 'N/A'}</p>
-        <p><strong>Party:</strong> ${areaData.mla?.party || 'N/A'}</p>
-        <p><strong>Phone:</strong> ${areaData.mla?.phone || 'N/A'}</p>
-        <p><strong>Office:</strong> ${areaData.mla?.office || 'N/A'}</p>
-    </section>
-    <section>
-    <h3>MP</h3>
-    <p><strong>Name:</strong> ${data.mp?.name || 'N/A'}</p>
-    <p><strong>Phone:</strong> ${data.mp?.phone || 'N/A'}</p>
-    <p><strong>Office:</strong> ${data.mp?.office || 'N/A'}</p>
-    </section>
-    <section>
-    <h3>Utilities</h3>
-    <p><strong>Electricity:</strong> ${data.utilities?.electricity?.name || 'N/A'} - ${data.utilities?.electricity?.helpline || 'N/A'}</p>
-    <p><strong>Water:</strong> ${data.utilities?.water?.name || 'N/A'} - ${data.utilities?.water?.helpline || 'N/A'}</p>
-    </section>
-    <section>
-    <h3>Emergency</h3>
-    <p><strong>Hospital:</strong> ${data.emergency?.hospitals?.[0]?.name || 'N/A'}</p>
-    <p><strong>Police:</strong> ${data.emergency?.police?.phone || 'N/A'}</p>
-    </section>
-    `;
-} catch (err) {
-    output.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
-}
-});
-function goBack() {
-    window.location.href = '/';
-}
-</script>        
-<script src="https://kit.fontawesome.com/f3140b6c91.js" crossorigin="anonymous"></script>
-<script src="script.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script src="pincodescript.js"></script>
 </body>
 </html>
+
+
