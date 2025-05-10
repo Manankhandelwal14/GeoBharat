@@ -7,7 +7,13 @@
   <link rel="stylesheet" href="responsive.css" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="logo.png" type="image/x-icon" />
+  <script src="https://kit.fontawesome.com/f3140b6c91.js" crossorigin="anonymous"></script>
   <style>
+
+    .result-container h2 {
+      text-transform: capitalize;
+    }
+
     .result-container {
       max-width: 800px;
       margin: 0 auto;
@@ -36,7 +42,24 @@
   </style>
 </head>
 <body>
+    <nav>
+        <div class="container main-nav flex">
+            <a href="index.html" class="company-logo">
+                <img src="logowithsidename.png" alt="Geo Bharat Logo">
+            </a>
+        </div>
+    </nav>
   <div class="result-container" id="utility-result">Loading...</div>
+
+      <div class="subfooter">
+        <div class="container flex subfooter-container">
+            <a class="hover-links" href="#">Privacy policy</a>
+            <a class="hover-links" href="#">Terms & Condition</a>
+            <a class="hover-links" href="#">Security Information</a>
+            <a class="hover-links" href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a class="hover-links" href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </div>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
@@ -48,17 +71,27 @@
       alert("Please enter a pincode to search.");
       window.location.href = "index.html#Services";
     } else {
-      fetch("http://192.168.109.128:5001/api/area/pincode/302025")
+      
+      fetch(`http://192.168.109.128:5001/api/area/pincode/${pincode}`)
+
         .then(res => res.json())
         .then(data => {
           const area = data?.data || data;
           const info = area?.utilities?.[service];
-          const serviceName = {
-            electricity: "Electricity Board",
-            water: "Water Supply",
-            gas: "Gas Supply",
-            waste: "Waste Management"
+
+          let rawServiceName = {
+            electricity: "electricity board",
+            water: "water supply",
+            gas: "gas supply",
+            waste: "waste management"
           }[service] || service;
+          
+          const serviceName = rawServiceName
+          .split(" ")
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
+
+
 
           let html = `<h2>${serviceName} for Pincode ${pincode}</h2>`;
 

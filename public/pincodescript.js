@@ -7,8 +7,8 @@ window.onload = function() {
 
     const pincode = document.body.getAttribute('data-pincode');
     if (!pincode) {
-        loadingDiv.style.display = 'none';
-        errorDiv.style.display = 'block';
+        // loadingDiv.style.display = 'none';
+        // errorDiv.style.display = 'block';
         // errorDiv.innerHTML = 'No pincode provided';
         return;
     }
@@ -18,8 +18,8 @@ window.onload = function() {
     errorDiv.style.display = 'none';
     areaDetailsDiv.style.display = 'none';
     areaDetailsDiv.innerHTML = `<p>Loading information for pincode ${pincode}...</p>`;
-
-    const backendBaseURL = 'http://localhost:5001';
+    
+    const backendBaseURL = "http://192.168.109.128:5001/api/area/pincode/";
     fetch(`${backendBaseURL}/api/area/pincode/${pincode}`)
         .then(response => {
             if (!response.ok) {

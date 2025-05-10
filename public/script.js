@@ -177,7 +177,6 @@ getLocationBtn.addEventListener('click', function () {
         };
     };
     
-    // NEW CODE: Utility Service Buttons Functionality
 // NEW CODE: Utility Service Buttons Functionality
 const utilityButtons = document.querySelectorAll('.utility-button');
 if (utilityButtons) {

@@ -357,12 +357,13 @@
     }
 
     .ser-left img{
-        width: 1800px;
-        margin-left: 25px;
+        width: 1400px;
+        margin-left: 170px;
     }
 
     .ser-right {
         margin-left: 300px;
+        margin-right: 15px;
         width: 280px;
     }
 
