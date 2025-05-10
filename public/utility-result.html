@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Utility Result - Geo Bharat</title>
+  <link rel="stylesheet" href="responsive.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="logo.png" type="image/x-icon" />
+  <style>
+    .result-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .service-card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .back-button {
+      display: inline-block;
+      background-color: #2294ed;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin-top: 20px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .back-button:hover {
+      background-color: #1077ca;
+    }
+  </style>
+</head>
+<body>
+  <div class="result-container" id="utility-result">Loading...</div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const pincode = urlParams.get("pincode");
+    const service = urlParams.get("service");
+    const container = document.getElementById("utility-result");
+
+    if (!pincode || !service) {
+      alert("Please enter a pincode to search.");
+      window.location.href = "index.html#Services";
+    } else {
+      fetch(`http://localhost:5001/api/area/pincode/${pincode}`)
+        .then(res => res.json())
+        .then(data => {
+          const area = data?.data || data;
+          const info = area?.utilities?.[service];
+          const serviceName = {
+            electricity: "Electricity Board",
+            water: "Water Supply",
+            gas: "Gas Supply",
+            waste: "Waste Management"
+          }[service] || service;
+
+          let html = `<h2>${serviceName} for Pincode ${pincode}</h2>`;
+
+          if (info && (Array.isArray(info) ? info.length : Object.keys(info).length)) {
+            if (Array.isArray(info)) {
+              info.forEach(item => {
+                html += `<div class="service-card">${Object.entries(item).map(([k, v]) => `<p><strong>${k}:</strong> ${v}</p>`).join('')}</div>`;
+              });
+            } else {
+              html += `<div class="service-card">${Object.entries(info).map(([k, v]) => `<p><strong>${k}:</strong> ${v}</p>`).join('')}</div>`;
+            }
+          } else {
+            html += `<p>No data available for ${serviceName} at pincode ${pincode}.</p>`;
+          }
+
+          html += `<a href="index.html#Services" class="back-button">← Back to Services</a>`;
+          container.innerHTML = html;
+        })
+        .catch(() => {
+          container.innerHTML = "<p style='color:red;'>Error fetching data. Please try again later.</p>";
+        });
+    }
+  </script>
+</body>
+</html>

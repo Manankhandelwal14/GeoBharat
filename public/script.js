@@ -68,49 +68,74 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Get location button functionality
-    if (getLocationBtn) {
-        const locationIcon = getLocationBtn.querySelector('.fa-location-dot');    
-        getLocationBtn.addEventListener('click', async function () {
-            if (!navigator.geolocation) {
-                alert('Geolocation is not supported by this browser.');
-                return;
-            }      
-            if (locationIcon) locationIcon.style.display = 'none';
-            if (locationLoading) locationLoading.style.display = 'inline-block';
-            getLocationBtn.classList.add('loading');
-        
-            try {
-                navigator.geolocation.getCurrentPosition(async (position) => {
-                    const { latitude, longitude } = position.coords;
-        
-                    // Using OpenStreetMap's Nominatim for reverse geocoding
-                    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
-                    const data = await response.json();
-        
-                    const pincode = data?.address?.postcode;
-        
-                    if (pincode) {
-                        if (pincodeInput) pincodeInput.value = pincode;
-                        alert(`Detected Pincode: ${pincode}\n\nAddress: ${data.display_name}`);
-                    } else {
-                        alert('Unable to detect pincode. Please try manually.');
-                    }
-                }, (error) => {
-                    console.error('Error fetching location:', error);
-                    alert('Unable to fetch your location. Please allow location access or enter pincode manually.');
-                }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
-        
-            } catch (error) {
-                console.error('Unexpected error:', error);
-                alert('Something went wrong. Please try again.');
-            } finally {
-                if (locationIcon) locationIcon.style.display = 'inline-block';
-                if (locationLoading) locationLoading.style.display = 'none';
-                getLocationBtn.classList.remove('loading');
-            }
-        });   
+// Get location button functionality
+if (getLocationBtn) {
+    const locationIcon = getLocationBtn.querySelector('.fa-location-dot');
+   const GOOGLE_API_KEY = "AIzaSyDPSf_xBWfBKPkyk9ah-BlVQyjzUEBf4Mk"; // Replace with your real API key
+
+getLocationBtn.addEventListener('click', function () {
+    if (!navigator.geolocation) {
+        alert('Geolocation is not supported by your browser.');
+        return;
     }
+
+    if (locationIcon) locationIcon.style.display = 'none';
+    if (locationLoading) locationLoading.style.display = 'inline-block';
+    getLocationBtn.classList.add('loading');
+
+    navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        console.log(`Lat: ${latitude}, Lon: ${longitude}`);
+
+        try {
+            // Step 1: Google API to get full address
+            const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${GOOGLE_API_KEY}`;
+            const googleRes = await fetch(geocodeUrl);
+            const googleData = await googleRes.json();
+
+            let address = "Not available";
+            if (googleData.status === "OK" && googleData.results.length) {
+                address = googleData.results[0].formatted_address || "Not available";
+            }
+
+            // Step 2: Use India-specific postalpincode.in API to get correct PIN
+            const pincodeUrl = `https://api.postalpincode.in/pincode/${latitude},${longitude}`;
+            const coordsToPincodeUrl = `https://api.postalpincode.in/postoffice/${latitude},${longitude}`; // fallback if needed
+
+            // This API actually doesn't take lat/lon — so we fallback to Google's result
+            const indianPincode = googleData.results
+                .flatMap(r => r.address_components)
+                .find(c => c.types.includes("postal_code"))?.long_name || "";
+
+            if (indianPincode.match(/^\d{6}$/)) {
+                if (pincodeInput) pincodeInput.value = indianPincode;
+                alert(`✅ Pincode: ${indianPincode}\n📍 Address: ${address}`);
+            } else {
+                const manual = prompt(`We couldn't detect the exact pincode.\n\nAddress found: ${address}\n\nPlease enter your 6-digit pincode manually:`);
+                if (manual && /^\d{6}$/.test(manual)) {
+                    pincodeInput.value = manual;
+                }
+            }
+        } catch (error) {
+            console.error("Location error:", error);
+            alert("Something went wrong. Please try again.");
+        } finally {
+            if (locationIcon) locationIcon.style.display = 'inline-block';
+            if (locationLoading) locationLoading.style.display = 'none';
+            getLocationBtn.classList.remove('loading');
+        }
+    }, (error) => {
+        console.error('Geolocation error:', error);
+        alert('Please allow location access or enter pincode manually.');
+    }, {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+    });
+});
+
+
+}
 
     // Helper functions for area data validation
     window.validateAreaData = function(data) {
@@ -153,23 +178,25 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // NEW CODE: Utility Service Buttons Functionality
-    const utilityButtons = document.querySelectorAll('.utility-button');
-    if (utilityButtons) {
-        utilityButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const serviceType = this.getAttribute('data-service');
-                const pincode = pincodeInput ? pincodeInput.value.trim() : '';
-                
-                if (!pincode || !/^\d{6}$/.test(pincode)) {
-                    alert('Please enter a valid 6-digit pincode first');
-                    return;
-                }
-                
-                // Redirect to utility service specific page
-                window.location.href = `utility-service.html?pincode=${pincode}&service=${serviceType}`;
-            });
+// NEW CODE: Utility Service Buttons Functionality
+const utilityButtons = document.querySelectorAll('.utility-button');
+if (utilityButtons) {
+    utilityButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const serviceType = this.getAttribute('data-service');
+            const pincodeInput = document.getElementById('pincode');
+            const pincode = pincodeInput ? pincodeInput.value.trim() : '';
+
+            if (!pincode || !/^[0-9]{6}$/.test(pincode)) {
+                alert('Please enter a valid 6-digit pincode first');
+                return;
+            }
+
+            // Redirect to new utility result page
+            window.location.href = `utility-result.html?pincode=${pincode}&service=${serviceType}`;
         });
-    }
+    });
+}
 });
 
 // Function to get URL parameters
