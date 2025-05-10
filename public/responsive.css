@@ -356,9 +356,11 @@
         font-size: 0.7rem;
     }
 
-
     .ser-left img{
-        margin-left: 250px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
     }
 
     .ser-right {
