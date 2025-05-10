@@ -357,10 +357,8 @@
     }
 
     .ser-left img{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 90%;
+        width: 1800px;
+        margin-left: 25px;
     }
 
     .ser-right {
