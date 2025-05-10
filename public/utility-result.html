@@ -72,7 +72,7 @@
       window.location.href = "index.html#Services";
     } else {
       
-      fetch(`http://192.168.109.128:5001/api/area/pincode/${pincode}`)
+      fetch(`https://geo-backend.onrender.com/api/area/pincode/${pincode}`)
 
         .then(res => res.json())
         .then(data => {

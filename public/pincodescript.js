@@ -19,8 +19,8 @@ window.onload = function() {
     areaDetailsDiv.style.display = 'none';
     areaDetailsDiv.innerHTML = `<p>Loading information for pincode ${pincode}...</p>`;
     
-    const backendBaseURL = "http://192.168.109.128:5001/api/area/pincode/";
-    fetch(`${backendBaseURL}/api/area/pincode/${pincode}`)
+   const backendBaseURL = `https://geo-backend.onrender.com/api/area/pincode/${pincode}`;
+   fetch(backendBaseURL)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Area not found');
