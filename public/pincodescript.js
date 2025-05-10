@@ -1,31 +1,23 @@
-// pincodescript.js
-window.onload = function() {
-
+window.onload = function () {
     const loadingDiv = document.getElementById('loading');
     const areaDetailsDiv = document.getElementById('area-details');
     const errorDiv = document.getElementById('error-message');
 
     const pincode = document.body.getAttribute('data-pincode');
-    if (!pincode) {
-        // loadingDiv.style.display = 'none';
-        // errorDiv.style.display = 'block';
-        // errorDiv.innerHTML = 'No pincode provided';
-        return;
-    }
-
+    if (!pincode) return;
 
     loadingDiv.style.display = 'block';
     errorDiv.style.display = 'none';
     areaDetailsDiv.style.display = 'none';
     areaDetailsDiv.innerHTML = `<p>Loading information for pincode ${pincode}...</p>`;
+
     
-   const backendBaseURL = `https://geo-backend.onrender.com/api/area/pincode/${pincode}`;
-   fetch(backendBaseURL)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Area not found');
-            }
-            return response.json();
+    const backendURL = 'http://192.168.109.128:5001';
+
+    fetch(`${backendURL}/api/area/pincode/${pincode}`)
+        .then(res => {
+            if (!res.ok) throw new Error("Area not found");
+            return res.json();
         })
         .then(data => {
             loadingDiv.style.display = 'none';
@@ -38,15 +30,15 @@ window.onload = function() {
             }
 
             const area = data.data;
-            
             const areaTitle = document.querySelector('.area-title');
             if (areaTitle && area?.name && area?.pincode) {
                 areaTitle.textContent = `${area.name} (${area.pincode})`;
             }
+
             let html = `
                 <div class="area-details">
                     <h3>${area?.name || 'N/A'} (${area?.pincode || 'N/A'})</h3>
-                    
+
                     <div class="section">
                         <h4>Government Representatives</h4>
                         <div class="subsection">
@@ -123,12 +115,6 @@ window.onload = function() {
 
             areaDetailsDiv.innerHTML = html;
             console.log("Area details rendered successfully");
-            setTimeout(() => {
-                console.log("Checking if area details are still visible:", areaDetailsDiv.style.display);
-                if (areaDetailsDiv.style.display !== 'block') {
-                    console.warn("Area details are no longer visible!");
-                }
-            }, 2000);
         })
         .catch(error => {
             loadingDiv.style.display = 'none';
@@ -140,9 +126,7 @@ window.onload = function() {
 };
 
 function renderList(items, title) {
-    if (!items || items.length === 0) {
-        return '';
-    }
+    if (!items || items.length === 0) return '';
 
     let html = `<div class="subsection"><h5>${title}</h5>`;
 

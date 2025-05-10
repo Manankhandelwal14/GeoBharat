@@ -214,8 +214,10 @@ async function fetchAreaInfo() {
     
     try {
         // Make API request
-        const response = await fetch(`http://localhost:5001/api/area/pincode/${pincode}`);
-        
+
+        const backendURL = 'http://192.168.109.128:5001';
+        const response = await fetch(`${backendURL}/api/area/pincode/${pincode}`);
+
         if (!response.ok) {
             if (response.status === 404) {
                 showError('Area not found. Please check the pincode and try again.');
