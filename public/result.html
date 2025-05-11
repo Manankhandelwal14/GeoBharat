@@ -1,61 +1,194 @@
-<!-- result.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area Information - Geo Bharat</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-    <link rel="stylesheet" href="responsive.css">
-    <link rel="stylesheet" href="style2.css">
-    <link rel="icon" href="logo.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Area Information - Geo Bharat</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="style2.css">
+  <link rel="icon" href="logo.png" type="image/x-icon">
 </head>
-<body data-pincode="">
+<body>
 
-    <nav>
-        <div class="container main-nav flex">
-            <a href="index.html" class="company-logo">
-                <img src="logowithsidename.png" alt="Geo Bharat Logo">
-            </a>
-        </div>
-    </nav>
-
-    <div class="container">
-        <h1 class="area-title">Area Information</h1>      
-        <div id="area-info-container">
-            <div id="loading" class="loading-dots">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <p>Loading area information...</p>
-            </div>
-            <div id="error-message" style="display:none; color:red; padding:20px;"></div>
-            <div id="area-details" style="display:none;">
-                <!-- Area details will be populated here -->
-            </div>
-        </div>
-        
-        <div class="back-link">
-            <a href="index.html" class="hover-links">
-                <i class="fas fa-arrow-left"></i> Back to Home
-            </a>              
-        </div>
+  <nav>
+    <div class="container main-nav flex">
+      <a href="index.html" class="company-logo">
+        <img src="logowithsidename.png" alt="Geo Bharat Logo">
+      </a>
     </div>
+  </nav>
 
-    <div class="subfooter">
-        <div class="container flex subfooter-container">
-            <a class="hover-links" href="#">Privacy policy</a>
-            <a class="hover-links" href="#">Terms & Condition</a>
-            <a class="hover-links" href="#">Security Information</a>
-            <a class="hover-links" href="#"><i class="fa-brands fa-facebook"></i></a>
-            <a class="hover-links" href="#"><i class="fa-brands fa-twitter"></i></a>
-        </div>
+  <div class="container">
+    <h1 class="area-title">Area Information</h1>
+
+    <div id="area-info-container">
+      <div id="loading" class="loading-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <p>Loading area information...</p>
+      </div>
+
+      <div id="error-message" style="display:none; color:red; padding:20px;"></div>
+
+      <div id="area-details" style="display:none;">
+
+        <!-- Local Representatives -->
+        <section class="area-section">
+          <h2>Local Representatives</h2>
+          <div class="card">
+            <h3>MLA</h3>
+            <p><strong>Name:</strong> <span id="mla-name">N/A</span></p>
+            <p><strong>Party:</strong> <span id="mla-party">N/A</span></p>
+            <p><strong>Contact:</strong> <span id="mla-phone">N/A</span></p>
+            <p><strong>Office/Constituency:</strong> <span id="mla-office">N/A</span></p>
+          </div>
+          <div class="card">
+            <h3>MP</h3>
+            <p><strong>Name:</strong> <span id="mp-name">N/A</span></p>
+            <p><strong>Party:</strong> <span id="mp-party">N/A</span></p>
+            <p><strong>Contact:</strong> <span id="mp-phone">N/A</span></p>
+            <p><strong>Office:</strong> <span id="mp-office">N/A</span></p>
+          </div>
+        </section>
+
+        <!-- Utilities -->
+        <section class="area-section">
+          <h2>Utilities</h2>
+          <div class="card">
+            <h3>Electricity</h3>
+            <p><strong>Provider:</strong> <span id="electricity-name">N/A</span></p>
+            <p><strong>Helpline:</strong> <span id="electricity-helpline">N/A</span></p>
+            <p><strong>Office Address:</strong> <span id="electricity-address">N/A</span></p>
+          </div>
+          <div class="card">
+            <h3>Water</h3>
+            <p><strong>Department:</strong> <span id="water-name">N/A</span></p>
+            <p><strong>Helpline:</strong> <span id="water-helpline">N/A</span></p>
+            <p><strong>Address:</strong> <span id="water-address">N/A</span></p>
+          </div>
+          <div class="card">
+            <h3>Gas Agencies</h3>
+            <div id="gas-agencies">
+              <!-- JS will inject agency list here -->
+            </div>
+          </div>
+          <div class="card">
+            <h3>Waste Management</h3>
+            <p><strong>Department:</strong> <span id="waste-dept">N/A</span></p>
+            <p><strong>Helpline:</strong> <span id="waste-helpline">N/A</span></p>
+            <p><strong>Address:</strong> <span id="waste-address">N/A</span></p>
+            <p><strong>Email:</strong> <span id="waste-email">N/A</span></p>
+          </div>
+        </section>
+
+        <!-- Emergency Services -->
+        <section class="area-section">
+          <h2>Emergency Services</h2>
+          <div class="card">
+            <h3>Hospitals</h3>
+            <div id="hospital-list">
+              <!-- JS will inject hospital list here -->
+            </div>
+          </div>
+          <div class="card">
+            <h3>Fire Station</h3>
+            <p><strong>Name:</strong> <span id="fire-name">N/A</span></p>
+            <p><strong>Phone:</strong> <span id="fire-phone">N/A</span></p>
+            <p><strong>Email:</strong> <span id="fire-email">N/A</span></p>
+          </div>
+          <div class="card">
+            <h3>Police</h3>
+            <p><strong>Name:</strong> <span id="police-name">N/A</span></p>
+            <p><strong>Address:</strong> <span id="police-address">N/A</span></p>
+            <p><strong>Phone:</strong> <span id="police-phone">N/A</span></p>
+            <p><strong>SHO Name:</strong> <span id="police-sho-name">N/A</span></p>
+            <p><strong>SHO Mobile:</strong> <span id="police-sho-mobile">N/A</span></p>
+            <p><strong>SHO CUG:</strong> <span id="police-sho-cug">N/A</span></p>
+          </div>
+        </section>
+
+        <!-- Transportation -->
+        <section class="area-section">
+          <h2>Transportation</h2>
+          <div class="card">
+            <h3>Bus Services</h3>
+            <div id="bus-list">
+              <!-- JS will inject bus list here -->
+            </div>
+          </div>
+          <div class="card">
+            <h3>Metro</h3>
+            <div id="metro-list">
+              <!-- JS will inject metro list here -->
+            </div>
+          </div>
+          <div class="card">
+            <h3>Railway</h3>
+            <div id="railway-list">
+              <!-- JS will inject railway list here -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Education -->
+        <section class="area-section">
+          <h2>Education</h2>
+          <div class="card">
+            <h3>Schools</h3>
+            <div id="school-list">
+              <!-- JS will inject school list here -->
+            </div>
+          </div>
+          <div class="card">
+            <h3>Libraries</h3>
+            <div id="library-list">
+              <!-- JS will inject library list here -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Public Facilities -->
+        <section class="area-section">
+          <h2>Public Facilities</h2>
+          <div class="card">
+            <h3>Community Centers</h3>
+            <div id="community-list">
+              <!-- JS will inject community centers here -->
+            </div>
+          </div>
+          <div class="card">
+            <h3>Land Records</h3>
+            <div id="land-records">
+              <!-- JS will inject land records here -->
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /#area-details -->
+
+      <div class="back-link">
+        <a href="index.html" class="hover-links">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+      </div>
+    </div><!-- /#area-info-container -->
+  </div><!-- /.container -->
+
+  <div class="subfooter">
+    <div class="container flex subfooter-container">
+      <a class="hover-links" href="#">Privacy Policy</a>
+      <a class="hover-links" href="#">Terms & Conditions</a>
+      <a class="hover-links" href="#">Security Information</a>
+      <a class="hover-links" href="#"><i class="fa-brands fa-facebook"></i></a>
+      <a class="hover-links" href="#"><i class="fa-brands fa-twitter"></i></a>
     </div>
-    <script src="https://kit.fontawesome.com/f3140b6c91.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="script.js"></script>
-    <script src="pincodescript.js"></script>
+  </div>
+
+  <script src="https://kit.fontawesome.com/f3140b6c91.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+  <script src="pincodescript.js"></script>
 </body>
 </html>
-
-

@@ -204,6 +204,34 @@
 }
 
 @media screen and (max-width: 767px) {
+    .nav-toggle {
+        display: block;
+        margin-right: 20px;
+    }
+
+    .main-nav {
+        overflow: initial;
+    }
+
+    .nav-links {
+        justify-content: center;
+        position: absolute;
+        background-color: white;
+        left: -100%;
+        top: 100%;
+        width: 100%;
+        padding-block: 20px;
+         transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+    }
+
     .con3 {
         flex-direction: column;
         align-items: center;
@@ -472,3 +500,5 @@
         z-index: 100;
     }
 }
+
+

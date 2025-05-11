@@ -10,7 +10,6 @@
   <link rel="icon" href="logo.png" type="image/x-icon" />
   <script src="https://kit.fontawesome.com/f3140b6c91.js" crossorigin="anonymous"></script>
   <style>
-
     .result-container h2 {
       text-transform: capitalize;
     }
@@ -75,7 +74,6 @@
     alert("Please enter a pincode to search.");
     window.location.href = "index.html#Services";
   } else {
-
     const backendURL = 'http://192.168.109.128:5001';
 
     console.log("Fetching from:", `${backendURL}/api/area/pincode/${pincode}`);
@@ -89,7 +87,7 @@
         const info = area?.utilities?.[service];
         console.log("Fetched area info:", info);
 
-        let rawServiceName = {
+        const rawServiceName = {
           electricity: "electricity board",
           water: "water supply",
           gas: "gas supply",
@@ -103,13 +101,19 @@
 
         let html = `<h2>${serviceName} for Pincode ${pincode}</h2>`;
 
+        const formatKey = key => key.charAt(0).toUpperCase() + key.slice(1);
+
         if (info && (Array.isArray(info) ? info.length : Object.keys(info).length)) {
           if (Array.isArray(info)) {
             info.forEach(item => {
-              html += `<div class="service-card">${Object.entries(item).map(([k, v]) => `<p><strong>${k}:</strong> ${v}</p>`).join('')}</div>`;
+              html += `<div class="service-card">${Object.entries(item)
+                .map(([k, v]) => `<p><strong>${formatKey(k)}:</strong> ${v}</p>`)
+                .join('')}</div>`;
             });
           } else {
-            html += `<div class="service-card">${Object.entries(info).map(([k, v]) => `<p><strong>${k}:</strong> ${v}</p>`).join('')}</div>`;
+            html += `<div class="service-card">${Object.entries(info)
+              .map(([k, v]) => `<p><strong>${formatKey(k)}:</strong> ${v}</p>`)
+              .join('')}</div>`;
           }
         } else {
           html += `<p>No data available for ${serviceName} at pincode ${pincode}.</p>`;
