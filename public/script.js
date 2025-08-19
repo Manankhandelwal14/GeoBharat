@@ -1,4 +1,4 @@
-// NAVIGATION TOGGLE
+// script.js 
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
 
@@ -8,7 +8,6 @@ if (navToggle) {
     });
 }
 
-// SMOOTH SCROLL FOR ANCHOR LINKS
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
@@ -35,14 +34,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// MAIN FUNCTIONALITY
 document.addEventListener('DOMContentLoaded', function () {
     const pincodeInput = document.getElementById('pincode');
     const searchIcon = document.querySelector('.search-icon');
     const getLocationBtn = document.getElementById('get-location');
     const locationLoading = document.getElementById('location-loading');
 
-    // Search by pincode
     function handleSearch() {
         const pincode = pincodeInput?.value.trim();
         if (/^\d{6}$/.test(pincode)) {
@@ -57,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.key === 'Enter') handleSearch();
     });
 
-    // Get location and detect pincode
     if (getLocationBtn) {
         const locationIcon = getLocationBtn.querySelector('.fa-location-dot');
         const GOOGLE_API_KEY = "AIzaSyDPSf_xBWfBKPkyk9ah-BlVQyjzUEBf4Mk";
@@ -90,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (/^\d{6}$/.test(indianPincode)) {
                         pincodeInput.value = indianPincode;
-                        alert(`✅ Pincode: ${indianPincode}\n📍 Address: ${address}`);
+                        alert(`Pincode: ${indianPincode}\n📍 Address: ${address}`);
                     } else {
                         const manual = prompt(`Could not detect pincode.\nAddress: ${address}\nEnter your 6-digit pincode:`);
                         if (manual && /^\d{6}$/.test(manual)) {
@@ -116,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Utility service buttons
     const utilityButtons = document.querySelectorAll('.utility-button');
     utilityButtons?.forEach(button => {
         button.addEventListener('click', function () {
@@ -131,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Utilities
 function getURLParameter(name) {
     return new URLSearchParams(window.location.search).get(name);
 }
@@ -143,7 +137,6 @@ function showError(message) {
     errorElement.style.display = 'block';
 }
 
-// Function to fetch area information for result page
 async function fetchAreaInfo() {
     const pincode = getURLParameter('pincode');
     if (!pincode) {
@@ -152,10 +145,9 @@ async function fetchAreaInfo() {
     }
     
     try {
-        // Make API request
-        const backendURL = 'http://192.168.109.128:5001';
-        const response = await fetch(`${backendURL}/api/area/pincode/${pincode}`);
+        const backendURL = "https://geobharat.onrender.com";
 
+        const response = await fetch(`${backendURL}/api/area/pincode/${pincode}`);
         if (!response.ok) {
             if (response.status === 404) {
                 showError('Area not found. Please check the pincode and try again.');
@@ -164,8 +156,7 @@ async function fetchAreaInfo() {
             }
             return;
         }
-        
-        // Process response
+
         const responseData = await response.json();
         let areaData;
         
@@ -183,19 +174,16 @@ async function fetchAreaInfo() {
     }
 }
 
-// Helper function to safely get nested properties
 function getSafe(obj, path) {
     if (!obj) return null;
     const keys = path.split('.');
     return keys.reduce((o, key) => (o && o[key] !== undefined) ? o[key] : null, obj);
 }
 
-// Helper function to check if a value exists and is meaningful
 function safe(val) {
     return (val && val !== "null" && val !== "") ? val : "N/A";
 }
 
-// Helper function to find the first valid value from multiple possible paths
 function getFirstValid(...paths) {
     return (obj) => {
         for (const path of paths) {
@@ -211,33 +199,28 @@ function getFirstValid(...paths) {
 function displayAreaInfo(area) {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('area-details').style.display = 'block';
-    
-    // Set area title with pincode
+
     document.querySelector('.area-title').textContent = `${area.name} (${area.pincode})`;
 
-    // MLA Information
     document.getElementById('mla-name').textContent = safe(getSafe(area, 'mla.name'));
     document.getElementById('mla-party').textContent = safe(getSafe(area, 'mla.party'));
     document.getElementById('mla-phone').textContent = safe(getSafe(area, 'mla.contact') || getSafe(area, 'mla.phone'));
     document.getElementById('mla-office').textContent = safe(getSafe(area, 'mla.constituency') || getSafe(area, 'mla.office'));
 
-    // MP Information
     document.getElementById('mp-name').textContent = safe(getSafe(area, 'mp.name'));
     document.getElementById('mp-party').textContent = safe(getSafe(area, 'mp.party'));
     document.getElementById('mp-phone').textContent = safe(getSafe(area, 'mp.phone') || getSafe(area, 'mp.contact'));
     document.getElementById('mp-office').textContent = safe(getSafe(area, 'mp.constituency') || getSafe(area, 'mp.office'));
 
-    // Utilities: Electricity
     document.getElementById('electricity-name').textContent = safe(getSafe(area, 'utilities.electricity.provider') || getSafe(area, 'utilities.electricity.name'));
     document.getElementById('electricity-helpline').textContent = safe(getSafe(area, 'utilities.electricity.helpline') || getSafe(area, 'utilities.electricity.office.helpline'));
     document.getElementById('electricity-address').textContent = safe(getSafe(area, 'utilities.electricity.address') || getSafe(area, 'utilities.electricity.office.address'));
 
-    // Utilities: Water
     document.getElementById('water-name').textContent = safe(getSafe(area, 'utilities.water.department') || getSafe(area, 'utilities.water.name'));
     document.getElementById('water-helpline').textContent = safe(getSafe(area, 'utilities.water.helpline') || getSafe(area, 'utilities.water.phone'));
     document.getElementById('water-address').textContent = safe(getSafe(area, 'utilities.water.address'));
 
-    // Gas Agencies
+    
     const gasContainer = document.getElementById('gas-agencies');
     gasContainer.innerHTML = "";
     const gasAgencies = getSafe(area, 'utilities.gas') || [];
@@ -254,13 +237,11 @@ function displayAreaInfo(area) {
         });
     }
 
-    // Waste Management
     document.getElementById('waste-dept').textContent = safe(getSafe(area, 'utilities.waste.department'));
     document.getElementById('waste-helpline').textContent = safe(getSafe(area, 'utilities.waste.helpline'));
     document.getElementById('waste-address').textContent = safe(getSafe(area, 'utilities.waste.address'));
     document.getElementById('waste-email').textContent = safe(getSafe(area, 'utilities.waste.email'));
 
-    // Emergency - Hospitals
     const hospitalContainer = document.getElementById('hospital-list');
     hospitalContainer.innerHTML = "";
     const hospitals = getSafe(area, 'emergency.hospitals') || [];
@@ -277,7 +258,6 @@ function displayAreaInfo(area) {
         });
     }
 
-    // Emergency - Fire
     const fireStation = getSafe(area, 'emergency.fireStation') || getSafe(area, 'emergency.fireStations') || [];
     let fireStationInfo;
     
@@ -291,7 +271,6 @@ function displayAreaInfo(area) {
     document.getElementById('fire-phone').textContent = safe(fireStationInfo.phone);
     document.getElementById('fire-email').textContent = safe(fireStationInfo.email);
 
-    // Emergency - Police
     document.getElementById('police-name').textContent = safe(getSafe(area, 'emergency.police.name'));
     document.getElementById('police-address').textContent = safe(getSafe(area, 'emergency.police.address'));
     document.getElementById('police-phone').textContent = safe(getSafe(area, 'emergency.police.phone') || getSafe(area, 'emergency.police.emergency'));
@@ -299,7 +278,6 @@ function displayAreaInfo(area) {
     document.getElementById('police-sho-mobile').textContent = safe(getSafe(area, 'emergency.police.sho.mobile') || getSafe(area, 'emergency.police.sho.phone'));
     document.getElementById('police-sho-cug').textContent = safe(getSafe(area, 'emergency.police.sho.cugNumber'));
 
-    // Transport - Buses
     const busContainer = document.getElementById('bus-list');
     busContainer.innerHTML = "";
     const buses = getSafe(area, 'transportation.bus') || getSafe(area, 'transport.buses') || [];
@@ -316,7 +294,6 @@ function displayAreaInfo(area) {
         });
     }
 
-    // Transport - Metro
     const metroContainer = document.getElementById('metro-list');
     metroContainer.innerHTML = "";
     const metro = getSafe(area, 'transportation.metro') || getSafe(area, 'transport.metro') || [];
@@ -332,7 +309,6 @@ function displayAreaInfo(area) {
         });
     }
 
-    // Transport - Railway
     const railwayContainer = document.getElementById('railway-list');
     railwayContainer.innerHTML = "";
     const railways = getSafe(area, 'transportation.railway') || getSafe(area, 'transport.railway') || [];
@@ -349,7 +325,6 @@ function displayAreaInfo(area) {
         });
     }
 
-    // Education - Schools
     const schoolContainer = document.getElementById('school-list');
     schoolContainer.innerHTML = "";
     const schools = getSafe(area, 'education.schools') || getSafe(area, 'education') || [];
@@ -369,7 +344,6 @@ function displayAreaInfo(area) {
         });
     }
 
-    // Education - Libraries
     const libraryContainer = document.getElementById('library-list');
     libraryContainer.innerHTML = "";
     const libraries = getSafe(area, 'education.libraries') || 
@@ -388,7 +362,6 @@ function displayAreaInfo(area) {
         });
     }
 
-    // Community Centers
     const commContainer = document.getElementById('community-list');
     commContainer.innerHTML = '';
     const halls = getSafe(area, 'community.halls') || 
@@ -407,7 +380,6 @@ function displayAreaInfo(area) {
         });
     }
 
-    // Land Records
     const landContainer = document.getElementById('land-records');
     landContainer.innerHTML = "";
     const registrars = getSafe(area, 'propertyRecords.registrarOffices') || 
@@ -416,7 +388,7 @@ function displayAreaInfo(area) {
     if (Array.isArray(registrars) && registrars.length === 0) {
         landContainer.innerHTML = `<p>No land record information available</p>`;
     } else {
-        // Handle both array and single object cases
+
         const offices = Array.isArray(registrars) ? registrars : [registrars];
         offices.forEach(office => {
             if (office && typeof office === 'object') {
@@ -434,17 +406,14 @@ function displayAreaInfo(area) {
     }
 }
 
-// Call the fetchAreaInfo function when on result page
 if (window.location.pathname.includes('result.html')) {
     document.addEventListener('DOMContentLoaded', fetchAreaInfo);
 }
 
-// Function for the back button
 function goBack() {
     window.history.back();
 }
 
-// NEW CODE: Utility Service Buttons Functionality
 const utilityButtons = document.querySelectorAll('.utility-button');
 if (utilityButtons) {
     utilityButtons.forEach(button => {
@@ -458,13 +427,11 @@ if (utilityButtons) {
                 return;
             }
 
-            // Redirect to new utility result page
             window.location.href = `utility-result.html?pincode=${pincode}&service=${serviceType}`;
         });
     });
 }
 
-// Helpers for backend usage
 window.validateAreaData = function (data) {
     try {
         if (!data.pincode || !data.name) {

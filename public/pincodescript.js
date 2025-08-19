@@ -12,7 +12,8 @@ window.onload = function () {
     areaDetailsDiv.innerHTML = `<p>Loading information for pincode ${pincode}...</p>`;
 
     
-    const backendURL = 'http://192.168.109.128:5001';
+    const backendURL = "https://geobharat.onrender.com";
+;
 
     fetch(`${backendURL}/api/area/pincode/${pincode}`)
         .then(res => {

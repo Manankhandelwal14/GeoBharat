@@ -1,14 +1,13 @@
 // areaRoutes.js 
 const express = require('express');
 const router = express.Router();
-const Area = require('./models/Area'); // Keep this import path to models/Area
+const Area = require('./models/area.js'); 
 
-// Get all areas or query by pincode
 router.get('/', async (req, res) => {
   try {
-    // If pincode is provided as a query parameter, find that specific area
+
     if (req.query.pincode) {
-      // Convert to string in case it's sent as a number
+
       const pincodeQuery = req.query.pincode.toString();
       console.log(`Searching for pincode: "${pincodeQuery}"`);
       
@@ -22,8 +21,7 @@ router.get('/', async (req, res) => {
       console.log(`Found area: ${area.name}`);
       return res.json(area);
     }
-    
-    // Implement pagination for getting all areas
+
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
@@ -48,13 +46,11 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get area by pincode (path parameter version)
 router.get('/pincode/:pincode', async (req, res) => {
   try {
     const pincode = req.params.pincode.toString().trim();
     console.log(`Looking up area by pincode path param: ${pincode}`);
-    
-    // Basic validation
+
     if (!pincode || pincode.length < 5) {
       return res.status(400).json({ message: 'Invalid pincode format' });
     }
@@ -73,13 +69,11 @@ router.get('/pincode/:pincode', async (req, res) => {
   }
 });
 
-// Get areas by name - modified to return multiple matches
 router.get('/name/:name', async (req, res) => {
   try {
     const name = req.params.name.trim();
     console.log(`Searching for areas with name containing: ${name}`);
-    
-    // Basic validation
+
     if (!name || name.length < 2) {
       return res.status(400).json({ message: 'Search term too short' });
     }
@@ -100,11 +94,10 @@ router.get('/name/:name', async (req, res) => {
   }
 });
 
-// Debugging route - list all areas in database
 router.get('/debug/all', async (req, res) => {
   try {
     console.log('DEBUG: Listing all areas in database');
-    const areas = await Area.find({}, { name: 1, pincode: 1 }); // Only return name and pincode
+    const areas = await Area.find({}, { name: 1, pincode: 1 }); 
     
     res.json({
       count: areas.length,
@@ -116,17 +109,14 @@ router.get('/debug/all', async (req, res) => {
   } 
 });
 
-// Add new area
 router.post('/', async (req, res) => {
   try {
     console.log('Creating new area:', req.body.name);
-    
-    // Basic validation
+
     if (!req.body.name || !req.body.pincode) {
       return res.status(400).json({ message: 'Name and pincode are required' });
     }
-    
-    // Check if pincode already exists
+
     const existingArea = await Area.findOne({ pincode: req.body.pincode });
     if (existingArea) {
       return res.status(409).json({ message: 'Area with this pincode already exists' });
@@ -142,7 +132,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Update area
 router.put('/:id', async (req, res) => {
   try {
     console.log(`Updating area with ID: ${req.params.id}`);
@@ -168,7 +157,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete area
 router.delete('/:id', async (req, res) => {
   try {
     console.log(`Deleting area with ID: ${req.params.id}`);

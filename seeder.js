@@ -2,7 +2,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const connectDB = require('./config/db.js');
-const Area = require('./models/Area.js');
+const Area = require('./models/area.js');
 
 connectDB();
 
@@ -150,7 +150,7 @@ const areaData = [
   },
   {
     name: 'Sitapura Industrial Area',
-    pincode: '302022', // Updated correct pincode from data
+    pincode: '303905', 
     mla: {
       name: 'Ashok Lahoti',
       party: '',
@@ -988,197 +988,399 @@ const areaData = [
    {
     name: "JAGATPURA",
     pincode: "302017",
-    mla: {
-      name: "Prashant Sharma",
-      party: "Indian National Congress",
-      address: "B/S-33, Central Spine Scheme, Jagatpura, Jaipur",
-      contact: "MyNeta"
+    "mla": {
+      "name": "Prashant Sharma",
+      "party": "Indian National Congress",
+      "address": "B/S-33, Central Spine Scheme, Jagatpura, Jaipur",
+      "contact": "MyNeta"
     },
-
-    mp: {
-      name: "Harish Chandra Meena",
-      constituency: "Jaipur Constituency",
-      address: "4-ka-10, Jawahar Nagar, Jaipur, Rajasthan - 302004",
-      phone: "+91-141-2657799, +91-9929884441"  // Converted from array to string
-},
-    utilities: {
-      electricity: {
-        provider: "Jaipur Vidyut Vitran Nigam Ltd. (JVVNL)",
-        localOffice: "Jagatpura Power House, Income Tax Colony, Jagatpura Getor, Jaipur - 302017",
-        phone: "+91-9413390585",
-        timings: "9:00 AM – 8:00 PM (All days)"
+    "mp": {
+      "name": "Harish Chandra Meena",
+      "constituency": "Jaipur Constituency",
+      "address": "4-ka-10, Jawahar Nagar, Jaipur, Rajasthan - 302004",
+      "phone": "+91-141-2657799, +91-9929884441"
+    },
+    "utilities": {
+      "electricity": {
+        "provider": "Jaipur Vidyut Vitran Nigam Ltd. (JVVNL)",
+        "localOffice": "Jagatpura Power House, Income Tax Colony, Jagatpura Getor, Jaipur - 302017",
+        "phone": "+91-9413390585",
+        "timings": "9:00 AM – 8:00 PM (All days)"
       },
-      water: {
-        department: "Public Health Engineering Department (PHED), Rajasthan",
-        controlRoom: "+91-141-2706624"
+      "water": {
+        "department": "Public Health Engineering Department (PHED), Rajasthan",
+        "controlRoom": "+91-141-2706624"
       },
-      gas: [
+      "gas": [
         {
-          name: "Indane – Om Gas Agency",
-          address: "No. 17 A, Usha Colony, Malviya Nagar, Jaipur - 302017",
-          phone: "+91-9414041692"
+          "name": "Indane – Om Gas Agency",
+          "address": "No. 17 A, Usha Colony, Malviya Nagar, Jaipur - 302017",
+          "phone": "+91-9414041692"
         },
         {
-          name: "Indane – Malviya Nagar",
-          address: "Shop No. 49, Model Town, Jagatpura, Malviya Nagar, Jaipur - 302015",
-          phone: "+91-9887027719"
+          "name": "Indane – Malviya Nagar",
+          "address": "Shop No. 49, Model Town, Jagatpura, Malviya Nagar, Jaipur - 302015",
+          "phone": "+91-9887027719"
         }
       ]
     },
-    transport: {
-      bus: [
+    "transport": {
+      "bus": [
         {
-          name: "Jaipur Low Floor Bus Route No. 8",
-          type: "Circular route"
+          "name": "Jaipur Low Floor Bus Route No. 8",
+          "type": "Circular route"
         },
         {
-          name: "Jaipur Mini Bus Route No. 17",
-          route: "Connects Aakeda Road (VKI area) to Jagatpura"
+          "name": "Jaipur Mini Bus Route No. 17",
+          "route": "Connects Aakeda Road (VKI area) to Jagatpura"
         }
       ],
-      rail: {
-        name: "Getor Jagatpura Railway Station",
-        code: "GTJT",
-        location: "Jagatpura, Jaipur, Rajasthan",
-        facilities: ["Two platforms", "parking", "bicycle stands", "auto-rickshaw stand", "ticket vending machines", "RPF substation"],
-        majorTrains: ["Jaipur–Hisar Passenger", "Ajmer-Chandigarh Garib Rath Express", "Ajmer-Amritsar Express", "Agra Fort-Ajmer Intercity Express"]
+      "rail": {
+        "name": "Getor Jagatpura Railway Station",
+        "code": "GTJT",
+        "location": "Jagatpura, Jaipur, Rajasthan",
+        "facilities": ["Two platforms", "parking", "bicycle stands", "auto-rickshaw stand", "ticket vending machines", "RPF substation"],
+        "majorTrains": ["Jaipur–Hisar Passenger", "Ajmer-Chandigarh Garib Rath Express", "Ajmer-Amritsar Express", "Agra Fort-Ajmer Intercity Express", "others"],
+        "connectivity": "Offers direct train services to various destinations, enhancing Jagatpura's connectivity"
       },
-      other: ["Auto-Rickshaws", "Cycle Rickshaws", "App-Based Ride Services", "Taxis"]
-    },
-    municipal: {
-      corporation: "Jaipur Nagar Nigam (Greater)",
-      mayor: {
-        name: "Dr. Somya Gurjar",
-        phone: "+91-8764880001",
-        email: "drsomya.gurjar84@rajasthan.gov.in"
-      },
-      commissioner: {
-        name: "Shri Babu Lal Goyal, I.A.S.",
-        phone: "+91-141-2740510",
-        email: "commissioner.jmc@rajasthan.gov.in"
-      },
-      helpline: "+91-141-2747400"
-    },
-    emergency: {
-      hospitals: [
+      "other": [
         {
-          name: "JNU Hospital",
-          address: "Jagatpura, Jaipur, Rajasthan 302017",
-          contact: "+91-141-7199000",
-          website: "www.jnuhealthcare.com",
-          services: "Multispeciality hospital with departments like cardiology, neurology, oncology, and more"
+          "name": "Auto-Rickshaws & Cycle Rickshaws", 
+          "description": "Widely available for short-distance travel within Jagatpura and nearby areas"
         },
         {
-          name: "Rishab Multispeciality Hospital",
-          address: "NRI Choraha, Vishwa Vidhyalaya Nagar, Jagatpura, Jaipur, Rajasthan 302017",
-          contact: "+91-96943-96943",
-          website: "www.rishabhospital.com",
-          services: "Offers services in pediatrics, neurosurgery, pulmonology, cardiology, and more"
+          "name": "App-Based Ride Services", 
+          "description": "Services like Uber, Ola, and Rapido operate in Jagatpura, offering convenient options for commuting"
         },
         {
-          name: "Aarogyam Hospital",
-          address: "Jagatpura, Jaipur, Rajasthan",
-          contact: "+91-95295-49090",
-          website: "www.aarogyamhospitals.org",
-          services: "Provides gynecology, neurology, pediatrics, dental care, and 24/7 emergency services"
-        },
-        {
-          name: "Jeevan Rekha Superspeciality Hospital",
-          address: "Jagatpura, Jaipur, Rajasthan"
-        }
-      ],
-      fireStation: {
-        name: "Jaipur Airport Fire Station",
-        address: "H 1-2227, Ramchandrapura, Phase 4, Jagatpura Road, Sanganer, Jaipur - 303905"
-      },
-      police: [
-        {
-          name: "Jagatpura Police Chowki",
-          phone: "+91-141-2750508"
-        },
-        {
-          name: "Malviya Nagar Police Station",
-          address: "A-235, Calgiri Marg, Jhalana Gram, Malviya Nagar, Jaipur - 302017",
-          phone: "+91-141-2523040"
+          "name": "Taxis", 
+          "description": "Traditional taxi services are also accessible for longer distances or personalized travel needs"
         }
       ]
     },
-    education: {
-      colleges: [
+    "municipal": {
+      "corporation": "Jaipur Nagar Nigam (Greater)",
+      "mayor": {
+        "name": "Dr. Somya Gurjar",
+        "phone": "+91-8764880001",
+        "email": "drsomya.gurjar84@rajasthan.gov.in"
+      },
+      "commissioner": {
+        "name": "Shri Babu Lal Goyal, I.A.S.",
+        "phone": "+91-141-2740510",
+        "email": "commissioner.jmc@rajasthan.gov.in"
+      },
+      "helpline": "+91-141-2747400"
+    },
+    "emergency": {
+      "hospitals": [
         {
-          name: "Government College, Jagatpura",
-          address: "Jaipur",
-          phone: "+91-9530043700",
-          email: "gcjagatpura@gmail.com"
+          "name": "JNU Hospital",
+          "address": "Jagatpura, Jaipur, Rajasthan 302017",
+          "contact": "+91-141-7199000",
+          "website": "www.jnuhealthcare.com",
+          "services": "Multispeciality hospital with departments like cardiology, neurology, oncology, and more"
         },
         {
-          name: "Jaipur National University",
-          address: "Jaipur-Agra Bypass, Near New RTO Office, Jagatpura, Jaipur - 302017",
-          phone: "+91-141-3127028",
-          tollFree: "1800-102-1900",
-          email: ["info@jnujaipur.ac.in", "admissions@jnujaipur.ac.in"]
+          "name": "Rishab Multispeciality Hospital",
+          "address": "NRI Choraha, Vishwa Vidhyalaya Nagar, Jagatpura, Jaipur, Rajasthan 302017",
+          "contact": "+91-96943-96943",
+          "website": "www.rishabhospital.com",
+          "services": "Offers services in pediatrics, neurosurgery, pulmonology, cardiology, and more"
+        },
+        {
+          "name": "Aarogyam Hospital",
+          "address": "Jagatpura, Jaipur, Rajasthan",
+          "contact": "+91-95295-49090",
+          "website": "www.aarogyamhospitals.org",
+          "services": "Provides gynecology, neurology, pediatrics, dental care, and 24/7 emergency services"
+        },
+        {
+          "name": "Jeevan Rekha Superspeciality Hospital",
+          "address": "Jagatpura, Jaipur, Rajasthan",
+          "contact": "Details not specified",
+          "services": "Superspeciality hospital services"
         }
       ],
-      schools: {
-        name: "Rajasthan Sadhana Public Senior Secondary School",
-        address: "B-45, Vishnu Vihar, Jagatpura, Jaipur - 302017",
-        phone: ["+91-141-2759607", "+91-9414335701", "+91-9024116926"],
-        email: "sadhana@rajasthanschool.com"
+      "fireStation": {
+        "name": "Jaipur Airport Fire Station",
+        "address": "H 1-2227, Ramchandrapura, Phase 4, Jagatpura Road, Sanganer, Jaipur - 303905"
       },
-      libraries: [
+      "police": [
         {
-          name: "Abhay Library",
-          address: "Jagatpura Road, Vivek Vihar, Jagatpura, Jaipur, Rajasthan 302017"
+          "name": "Jagatpura Police Chowki",
+          "phone": "+91-141-2750508",
+          "address": "Jagatpura, Jaipur"
         },
         {
-          name: "Brilliant Library",
-          address: "Jagatpura, Jaipur, Rajasthan 302017",
-          contact: "+91-7733888077",
-          facilities: ["Fully air-conditioned", "Wi-Fi", "RO water", "Hindi & English newspapers", "current GK materials"]
-        },
-        {
-          name: "Bhumika Library",
-          address: "Vivek Vihar Mod, Jagatpura, near Shiv Mandir, Jaipur, Rajasthan 302017",
-          details: "A local library offering a quiet study environment"
+          "name": "Malviya Nagar Police Station",
+          "address": "A-235, Calgiri Marg, Jhalana Gram, Malviya Nagar, Jaipur - 302017",
+          "phone": "+91-141-2523040"
         }
       ]
     },
-    community: {
-      halls: [
+    "education": {
+      "colleges": [
         {
-          name: "Anand Vihar Community Center",
-          address: "D-Block, Anand Vihar, Railway Colony, Jagatpura, Jaipur - 302017",
-          contactPersons: [
+          "name": "Government College, Jagatpura",
+          "address": "Jaipur",
+          "phone": "+91-9530043700",
+          "email": "gcjagatpura@gmail.com",
+          "source": ["jaipurmcheritage.org", "Rajasthan HTE"]
+        },
+        {
+          "name": "Jaipur National University",
+          "address": "Jaipur-Agra Bypass, Near New RTO Office, Jagatpura, Jaipur - 302017",
+          "phone": "+91-141-3127028",
+          "tollFree": "1800-102-1900",
+          "email": ["info@jnujaipur.ac.in", "admissions@jnujaipur.ac.in"],
+          "website": "jnujaipur.ac.in"
+        }
+      ],
+      "schools": [
+        {
+          "name": "Rajasthan Sadhana Public Senior Secondary School",
+          "address": "B-45, Vishnu Vihar, Jagatpura, Jaipur - 302017",
+          "phone": ["+91-141-2759607", "+91-9414335701", "+91-9024116926"],
+          "email": "sadhana@rajasthanschool.com"
+        }
+      ],
+      "libraries": [
+        {
+          "name": "Abhay Library",
+          "address": "Jagatpura Road, Vivek Vihar, Jagatpura, Jaipur, Rajasthan 302017",
+          "mapSource": "Mappls"
+        },
+        {
+          "name": "Brilliant Library",
+          "address": "Jagatpura, Jaipur, Rajasthan 302017",
+          "contact": "+91-7733888077",
+          "facilities": ["Fully air-conditioned", "Wi-Fi", "RO water", "Hindi & English newspapers", "current GK materials"],
+          "socialMedia": "Facebook Page: Brilliant Library"
+        },
+        {
+          "name": "Bhumika Library",
+          "address": "Vivek Vihar Mod, Jagatpura, near Shiv Mandir, Jaipur, Rajasthan 302017",
+          "details": "A local library offering a quiet study environment"
+        }
+      ]
+    },
+    "community": {
+      "centers": [
+        {
+          "name": "Anand Vihar Community Center",
+          "address": "D-Block, Anand Vihar, Railway Colony, Jagatpura, Jaipur - 302017",
+          "contactPersons": [
             {
-              name: "Smt. Ruchi Kapoor",
-              phone: "+91-8209075747"
+              "name": "Smt. Ruchi Kapoor",
+              "phone": "+91-8209075747"
             },
             {
-              name: "Smt. Monica Joshi",
-              phone: "+91-9829059910"
+              "name": "Smt. Monica Joshi",
+              "phone": "+91-9829059910"
             }
           ]
         },
         {
-          name: "JDA Community Center",
-          phone: "+91-141-2569696",
-          bookingPortal: "jda.rajasthan.gov.in"
+          "name": "JDA Community Center",
+          "phone": "+91-141-2569696",
+          "bookingPortal": "jda.rajasthan.gov.in"
         }
       ]
     },
-    propertyRecords: {
-      registrarOffices: [
+    "propertyRecords": {
+      "registrarOffices": [
         {
-          name: "Jaipur-I Sub-Registrar Office",
-          location: "JDA Main Building, JLN Marg, Jaipur"
+          "name": "Jaipur-I Sub-Registrar Office",
+          "location": "JDA Main Building, JLN Marg, Jaipur"
         },
         {
-          name: "Jaipur-II Sub-Registrar Office",
-          location: "Panjiyan Bhawan, Collectorate Campus, Bani Park, Jaipur"
+          "name": "Jaipur-II Sub-Registrar Office",
+          "location": "Panjiyan Bhawan, Collectorate Campus, Bani Park, Jaipur"
         }
       ]
     }
-  }
+},
+
+{
+    name: "BAPU NAGAR",
+    pincode: "302015",
+    mla: {
+      "constituency": "Malviya Nagar Assembly Constituency",
+      "note": "For the most accurate and up-to-date information on the current MLA, please refer to the official Rajasthan Legislative Assembly website: assembly.rajasthan.gov.in"
+    },
+    "mp": {
+      "note": "For the most accurate and up-to-date information on the current MP, please refer to the official Rajasthan Legislative Assembly website: assembly.rajasthan.gov.in"
+    },
+    "municipal": {
+      "corporation": "Jaipur Nagar Nigam (Greater)",
+      "mayor": {
+        "name": "Dr. Somya Gurjar",
+        "phone": "8764880001",
+        "email": "drsomya.gurjar84@rajasthan.gov.in"
+      },
+      "commissioner": {
+        "name": "Shri Babu Lal Goyal, I.A.S.",
+        "phone": "0141-2740510",
+        "email": "commissioner.jmc@rajasthan.gov.in"
+      },
+      "headOffice": {
+        "address": "Pandit Deendayal Upadhyay Bhawan, Lal Kothi, Tonk Road, Jaipur, Rajasthan",
+        "controlRoom": "0141-2742900",
+        "helpline": "0141-2747400",
+        "pbxNumbers": ["0141-2740510", "0141-2742404", "0141-2741061", "0141-2740167", "0141-2742054"],
+        "website": "jaipurmc.org"
+      },
+      "zonalOffice": {
+        "contact": "+91-141-2744697"
+      },
+      "wasteManagement": {
+        "doorToDoorComplaint": "8447905965",
+        "onlinePortal": "Samadhan Portal"
+      }
+    },
+    "utilities": {
+      "electricity": {
+        "provider": "Jaipur Vidyut Vitran Nigam Ltd. (JVVNL)",
+        "customerCare": ["1800-180-6507", "1912"],
+        "website": "jvvnl.org"
+      },
+      "water": {
+        "department": "Public Health Engineering Department (PHED)",
+        "stateControlRoom": "0141-2222585",
+        "website": "phedwater.rajasthan.gov.in"
+      },
+      "gas": [
+        {
+          "name": "Ashish Gas Jaipur",
+          "address": "Shop No. 128, Mishra Market, Opposite Agarwal College, Agra Road, Jaipur",
+          "contact": "+91-9414070868",
+          "services": ["New connections", "cylinder refills", "emergency services"],
+          "distributorCode": "41012215"
+        },
+        {
+          "name": "Vasundhara HP Gas Agency",
+          "address": "38A, Amrapali Road, Indraprastha Colony, B Block, Vaishali Nagar, Jaipur",
+          "contact": "+91-9414070077",
+          "services": ["Domestic LPG supply", "customer support"]
+        }
+      ]
+    },
+    "transport": {
+      "metro": {
+        "nearestStation": "Civil Lines Metro Station",
+        "distance": "approximately 4 km away",
+        "contact": "0141-2222470",
+        "email": "cljp@jaipurmetrorail.in"
+      },
+      "rail": {
+        "nearestStation": "Gandhi Nagar Jaipur Railway Station",
+        "distance": "approximately 3 km away"
+      },
+      "website": "transport.rajasthan.gov.in"
+    },
+    "emergency": {
+      "hospitals": [
+        {
+          "name": "Santokba Durlabhji Memorial Hospital (SDMH)",
+          "address": "Bhagwan Das Road, Bapu Nagar, Jaipur",
+          "contact": "0141-2566251",
+          "website": "sdmh.in",
+          "overview": "Established in 1971, SDMH is a 551-bed, multi-specialty, not-for-profit hospital offering comprehensive medical services, including one of the best blood banks in the country."
+        },
+        {
+          "name": "KKS Urology & General Hospital",
+          "address": "B-132A, Rajendra Marg, Bapu Nagar, Jaipur",
+          "contact": ["0141-2711534", "0141-2710413"],
+          "email": "info@kksurology.com",
+          "website": "kksurology.com",
+          "overview": "Specializes in urology, general surgery, orthopedics, gynecology, and more. Recognized as the Best Urology Hospital of Rajasthan at the Radio City Icon Awards 2018."
+        }
+      ],
+      "fireStation": {
+        "name": "Fire Station - Malviya Nagar",
+        "address": "Omega Company, Malviya Nagar Industrial Area, Opposite, Jaipur, Rajasthan 302017",
+        "phone": "+91-141-2755930",
+        "overview": "This station is located approximately 3 km from Bapu Nagar and provides emergency fire services to the surrounding areas."
+      },
+      "police": [
+        {
+          "name": "Gandhi Nagar Police Station",
+          "address": "University Marg, Bapu Nagar, Jaipur, Rajasthan 302015",
+          "phone": "+91-141-2619725"
+        }
+      ]
+    },
+    "education": {
+      "governmentSchools": [
+        {
+          "name": "Government Upper Primary School",
+          "address": "University Marg, Bapu Nagar, Jaipur",
+          "timings": "Monday–Saturday, 7:00 AM – 3:00 PM"
+        },
+        {
+          "name": "Government Primary School, Surya Nagar",
+          "address": "Ward No. 14, Surya Nagar, Jaipur",
+          "overview": "Provides foundational education to children in the Surya Nagar area."
+        }
+      ],
+      "privateSchools": [
+        {
+          "name": "Subodh Public School",
+          "address": "Bhawani Singh Road, Rambagh Crossing, Jaipur",
+          "board": "CBSE",
+          "grades": "Nursery to 12",
+          "fees": "Approximately ₹60,000 per annum",
+          "overview": "Established in 1985, this co-educational institution emphasizes academic excellence and holistic development."
+        },
+        {
+          "name": "Maharaja Sawai Man Singh Vidyalaya",
+          "address": "Sawai Ram Singh Road, Rambagh, Jaipur",
+          "board": ["CBSE", "IGCSE"],
+          "grades": "Nursery to 12",
+          "fees": "Approximately ₹1,37,500 per annum",
+          "overview": "Founded in 1984, the school offers a blend of traditional and modern education frameworks."
+        },
+        {
+          "name": "Maheshwari Public School International",
+          "address": "Bhabha Marg, Tilak Nagar, Jaipur",
+          "board": "CBSE",
+          "grades": "Class 1 to 12",
+          "fees": "Approximately ₹1,00,000 per annum",
+          "overview": "Run under the Maheshwari Samaj, the school focuses on high-quality education within a safe environment."
+        }
+      ],
+      "libraries": "NOT AVAILABLE"
+    },
+    "community": {
+      "centers": [
+        {
+          "name": "Brahma Kumaris Rajyoga Meditation Center",
+          "address": "D-82A, Prabhu Kunj Bhawan, First Floor, Krishna Marg, Bapu Nagar, Jaipur – 302015",
+          "contact": {
+            "phone": "0141-2708462",
+            "mobile": "+91-9950167468",
+            "email": "bapunagar.jpr@bkivv.org"
+          },
+          "overview": "This center offers meditation sessions, spiritual classes, and community programs."
+        },
+        {
+          "name": "JDA Community Center",
+          "bookingPortal": "Jaipur Development Authority",
+          "overview": "The Jaipur Development Authority (JDA) provides community centers across Jaipur for public events. Residents can book these centers online through the JDA portal."
+        }
+      ]
+    },
+    "propertyRecords": {
+      "registrarOffices": [
+        {
+          "name": "Sub-Registrar Office Jaipur-IV",
+          "address": "Nagar Nigam Office, Lal Kothi, Jaipur, Rajasthan",
+          "overview": "This office handles property registrations, marriage registrations, and other legal documentation for the Bapu Nagar area."
+        }
+      ]
+    }
+}
   ];
 
 const importData = async () => {

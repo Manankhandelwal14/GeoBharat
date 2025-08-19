@@ -74,7 +74,11 @@
     alert("Please enter a pincode to search.");
     window.location.href = "index.html#Services";
   } else {
-    const backendURL = 'http://192.168.109.128:5001';
+
+    
+
+    const backendURL = "https://geobharat.onrender.com";
+
 
     console.log("Fetching from:", `${backendURL}/api/area/pincode/${pincode}`);
 
@@ -130,3 +134,5 @@
 </script>
 </body>
 </html>
+
+

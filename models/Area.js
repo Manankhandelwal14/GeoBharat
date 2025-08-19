@@ -20,7 +20,7 @@ const AreaSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    index: true // Add index for faster queries
+    index: true
   },
   district: {
     type: String,
@@ -38,7 +38,7 @@ const AreaSchema = new mongoose.Schema({
   },
   mp: {
     name: String,
-    party: String, // Added party field for consistency with MLA
+    party: String, 
     phone: String,
     office: String
   },
@@ -90,7 +90,7 @@ const AreaSchema = new mongoose.Schema({
       name: String,
       address: String,
       phone: String,
-      emergency: String // Added emergency contact
+      emergency: String 
     }],
     fireStations: [{
       name: String,
@@ -128,10 +128,9 @@ const AreaSchema = new mongoose.Schema({
     longitude: Number
   }
 }, {
-  timestamps: true // Adds createdAt and updatedAt fields
+  timestamps: true 
 });
 
-// Add a compound index for faster searches
 AreaSchema.index({ name: 1, pincode: 1 });
 
 mongoose.set('strictQuery', true);
