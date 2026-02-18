@@ -1,7 +1,7 @@
 // areaRoutes.js 
 const express = require('express');
 const router = express.Router();
-const Area = require('../models/area.js');
+const Area = require('./models/area.js'); 
 
 router.get('/', async (req, res) => {
   try {
