@@ -7,6 +7,11 @@ const areaRoutes = require('./areaRoutes');
 const path = require('path');
 
 const app = express();
+const cors = require('cors');
+
+app.use(cors({
+  origin: 'https://geo-bharat.vercel.app'
+}));
 
 const corsOptions = {
   origin: function (origin, callback) {
